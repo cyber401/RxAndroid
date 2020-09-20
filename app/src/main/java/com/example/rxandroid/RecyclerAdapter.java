@@ -40,7 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
     void setEntryList(Entry entry){
         entryList.add(entry);
-        notifyItemInserted(entryList.size()-1);
+        notifyItemInserted(entryList.size()-1); // this work when we provide data in real time in recycler view
     }
 
 

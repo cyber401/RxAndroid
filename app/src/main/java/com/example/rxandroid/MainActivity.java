@@ -35,16 +35,21 @@ RecyclerAdapter adapter;
         Entry entry6 = new Entry("20.0", "tv", "20.01.2020" );
         Entry entry7 = new Entry("20.0", "tv", "20.01.2020" );
         Entry entry8 = new Entry("20.0", "tv", "20.01.2020" );
-        adapter.setEntryList(entry);
-        adapter.setEntryList(entry1);
-        adapter.setEntryList(entry2);
-        adapter.setEntryList(entry3);
-        adapter.setEntryList(entry4);
-        adapter.setEntryList(entry5);
-        adapter.setEntryList(entry6);
-        adapter.setEntryList(entry7);
-        adapter.setEntryList(entry8);
-
+//        adapter.setEntryList(entry);
+//        adapter.setEntryList(entry1);
+//        adapter.setEntryList(entry2);
+//        adapter.setEntryList(entry3);
+//        adapter.setEntryList(entry4);
+//        adapter.setEntryList(entry5);
+//        adapter.setEntryList(entry6);
+//        adapter.setEntryList(entry7);
+//        adapter.setEntryList(entry8);
+        Observable.just(entry,entry1,entry2,entry3,entry4,entry5,entry6,entry7,entry8).subscribe(new Consumer<Entry>() {
+            @Override
+            public void accept(Entry entry) throws Throwable {
+                adapter.setEntryList(entry);
+            }
+        });
     activityMainBinding.recycle.setAdapter(adapter);
     }
 }
