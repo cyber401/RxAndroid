@@ -1,14 +1,12 @@
 package com.example.rxandroid;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.rxandroid.databinding.ActivityMainBinding;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -26,15 +24,10 @@ RecyclerAdapter adapter;
         setContentView(view);
         adapter=new RecyclerAdapter();
         activityMainBinding.recycle.setLayoutManager(new LinearLayoutManager(this));
-        Entry entry = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry1 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry2 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry3 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry4 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry5 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry6 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry7 = new Entry("20.0", "tv", "20.01.2020" );
-        Entry entry8 = new Entry("20.0", "tv", "20.01.2020" );
+        Entry entry1 = new Entry(BigDecimal.valueOf(1500),"T.V", new Date()); // BigDecimal.value of() use to convert double to BigDecimal
+        Entry entry2 = new Entry(BigDecimal.valueOf(1544),"Mobile", new Date());
+        Entry entry3 = new Entry(BigDecimal.valueOf(1172),"Refrigerator", new Date());
+        Entry entry4 = new Entry(BigDecimal.valueOf(1627),"Washing Machine", new Date());
 //        adapter.setEntryList(entry);
 //        adapter.setEntryList(entry1);
 //        adapter.setEntryList(entry2);
@@ -44,10 +37,10 @@ RecyclerAdapter adapter;
 //        adapter.setEntryList(entry6);
 //        adapter.setEntryList(entry7);
 //        adapter.setEntryList(entry8);
-        Observable.just(entry,entry1,entry2,entry3,entry4,entry5,entry6,entry7,entry8).subscribe(new Consumer<Entry>() {
+        Observable.just(entry1,entry2,entry3,entry4).subscribe(new Consumer<Entry>() {
             @Override
             public void accept(Entry entry) throws Throwable {
-                adapter.setEntryList(entry);
+                adapter.setENTRY_LIST(entry);
             }
         });
     activityMainBinding.recycle.setAdapter(adapter);

@@ -4,22 +4,22 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Entry {
-    private String price;
+    private BigDecimal price;
     private String nameOfCommodity;
-    private String date;
+    private Date date;
 
-    public Entry(String price, String nameOfCommodity, String date) {
+    public Entry(BigDecimal price, String nameOfCommodity, Date date) {
         this.price = price;
         this.nameOfCommodity = nameOfCommodity;
         this.date = date;
     }
 
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

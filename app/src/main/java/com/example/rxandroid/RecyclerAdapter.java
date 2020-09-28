@@ -4,17 +4,21 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rxandroid.databinding.EntryListBinding;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    private final List<Entry> entryList = new ArrayList<>();
-
-
+    private final List<Entry> ENTRY_LIST = new ArrayList<>();
+    private final NumberFormat NUMBER_FORMAT =new DecimalFormat("#0.00");
+    private final DateFormat DATE_FORMAT = DateFormat.getDateInstance();
 
     @NonNull
     @Override
@@ -27,20 +31,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
-    Entry entry = entryList.get(position);
+    Entry entry = ENTRY_LIST.get(position);
     holder.entryListBinding.productName.setText(entry.getNameOfCommodity());
-    holder.entryListBinding.price.setText(entry.getPrice());
-    holder.entryListBinding.date.setText(entry.getDate());
+    holder.entryListBinding.price.setText(NUMBER_FORMAT.format(entry.getPrice().doubleValue()));
+    holder.entryListBinding.date.setText(android.text.format.DateFormat.format("yyyy-MM-dd hh:mm", entry.getDate()));// that's how Date formating work
 
     }
-
     @Override
     public int getItemCount() {
-        return entryList.size();
+        return ENTRY_LIST.size();
     }
-    void setEntryList(Entry entry){
-        entryList.add(entry);
-        notifyItemInserted(entryList.size()-1); // this work when we provide data in real time in recycler view
+    void setENTRY_LIST(Entry entry){
+        ENTRY_LIST.add(entry);
+        notifyItemInserted(ENTRY_LIST.size()-1); // this work when we provide data in real time in recycler view
     }
 
 
@@ -54,3 +57,4 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
 }
+
